@@ -5,23 +5,27 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Lader
+  - Water
+  - Enemy
+  - BulletPlayer
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - CheckPoint
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Lader
+  - Player
+  - Character
+  - Enemy
+  - CheckGround
+  - CheckPlayer
+  - BulletPlayer
+  - BulletEnemy
+  - DestroyCharacter
   - 
   - 
   - 
@@ -41,4 +45,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2781013595
+    locked: 0
+  - name: Lader
+    uniqueID: 1017086791
+    locked: 0
+  - name: Player
+    uniqueID: 529652943
+    locked: 0
+  - name: Water
+    uniqueID: 649309075
     locked: 0
