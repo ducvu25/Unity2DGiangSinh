@@ -280,10 +280,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Ground"))
-        {
+        /*if (collision.transform.CompareTag("Ground"))
+        {*/
             _numberJump = 0;
-        }
+       // }
     }
     /*private void OnTriggerStay2D(Collider2D collision)
     {
@@ -413,4 +413,9 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawLine(pointCheckLayer.position, pointCheckLayer.position - new Vector3(0, distanceWater, 0));
         //Gizmos.DrawWireSphere(pointCheckLayer.position, distanceWater);
     }*/
+    public Rigidbody2D Rigidbody2D
+    {
+        get { return rigidbody2D; }
+        set { rigidbody2D = value; }
+    }
 }

@@ -17,16 +17,18 @@ public class UIController : MonoBehaviour
     void Start()
     {
         
-       ShowSettingOff();
+       
     }
 
     public void ShowSettingOn()
     {
-        goSetting.SetActive(true);
+        Debug.Log("On");
+        goSetting.transform.GetComponent<Animator>().SetTrigger("On");
     }
-    void ShowSettingOff()
+    public void ShowSettingOff()
     {
-        //goSetting.SetActive(false);
+        Debug.Log("Off");
+        goSetting.transform.GetComponent<Animator>().SetTrigger("Off");
     }
 
     public void ShowHpAddDame(Vector3 pos, float dame, bool crits)
