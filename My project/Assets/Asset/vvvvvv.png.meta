@@ -207,7 +207,7 @@ TextureImporter:
         width: 153
         height: 119
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -215,6 +215,27 @@ TextureImporter:
       bones: []
       spriteID: e02847ca40bb5e44faa6ae0b27a784ab
       internalID: 1176744851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vvvvvv_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 485
+        width: 107
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deb13fd05b359f340b342aa063f03ea4
+      internalID: 494189498
       vertices: []
       indices: 
       edges: []
@@ -234,6 +255,7 @@ TextureImporter:
       vvvvvv_1: 529489134
       vvvvvv_2: 224954434
       vvvvvv_3: 1176744851
+      vvvvvv_4: 494189498
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

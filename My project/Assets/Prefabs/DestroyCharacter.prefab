@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 427840564144931880}
   - component: {fileID: 7716454472940715626}
   - component: {fileID: 6015339909165704261}
-  - component: {fileID: -4365068511728393248}
   m_Layer: 15
   m_Name: DestroyCharacter
   m_TagString: Untagged
@@ -149,17 +148,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.010600869}
   serializedVersion: 2
   m_Radius: 0.13003427
---- !u!114 &-4365068511728393248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2191428729723965966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4e6bb575342ec447bdf78b1b10f935f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  angle: 2
-  speed: 10

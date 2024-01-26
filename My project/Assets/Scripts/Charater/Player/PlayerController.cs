@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     bool facingRight;
 
     Rigidbody2D rigidbody2D;
+    CapsuleCollider2D capsuleCollider2D;
     Animator animator;
     Vector2 move;
 
@@ -64,14 +65,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float delayZoom;
     float _delayZoom;
     CameraFollow cameraFollow;
-     
+
+    [Header("\n----------Die-----")]
+    [SerializeField] LayerMask lmHazards;
+    [SerializeField] List<Sprite> sprites;
+
+    // hôi phục
+    bool hoiMP;
     
     private void Awake()
     {
+        int n = FindObjectsOfType<PlayerController>().Length;
+        if (n > 1)
+            Destroy(gameObject);
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         cameraFollow = FindAnyObjectByType<CameraFollow>();
-        //capsuleCollider = GetComponent<CapsuleCollider2D>();
+        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
     // Start is called before the first frame update
     void Start()
@@ -85,11 +95,21 @@ public class PlayerController : MonoBehaviour
         _timeAttack = 0;
         checkClimb = false;
         checkWater = false;
-        hp = information.Hp;
-        mp = information.Mp;
+        hoiMP = false;
+        if (DataPlay.StartGame)
+        {
+            DataPlay.StartGame = false;
+            hp = information.Hp;
+            mp = information.Mp;
+        }
+        else
+        {
+            hp = PlayerPrefs.GetFloat(DataPlay.NameKey(NAME_KEY_PREFABS.hpPlayer), 0);
+            mp = PlayerPrefs.GetFloat(DataPlay.NameKey(NAME_KEY_PREFABS.mpPlayer), 0);
+        }
         gravity = rigidbody2D.gravityScale;
 
-        Invoke("SetValueClass", 0.5f);
+        Invoke("SetValueClass", 0.1f);
     }
     void SetValueClass()
     {
@@ -100,26 +120,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // CheckLayer();
-        CheckInput();
-        UpdateAnimation();
+        if (hp > 0)
+        {
+            CheckLayer();
+            CheckInput();
+            UpdateAnimation();
+            HoiPhuc();
+        }
     }
-    /*
     void CheckLayer()
     {
-        if(Physics2D.OverlapCircle(pointCheckLayer.position, distanceClimd, lmClimd))
+        if(capsuleCollider2D.IsTouchingLayers(lmHazards))
         {
-            if (!checkClimb)
-            {
-                animator.Play("Climb");
-                checkClimb = true;
-                rigidbody2D.gravityScale = 0;
-                _numberJump = 0;
-            }
-        }
-        else
-        {
-            checkClimb = false;
+            hp = 0;
+            UpdateHp();
         }
         // Physics2D.OverlapCircle(pointCheckLayer.position, distanceWater, lmWater)
         /*if (Physics2D.Raycast(pointCheckLayer.position, Vector2.down, distanceWater, lmWater)){
@@ -148,9 +162,8 @@ public class PlayerController : MonoBehaviour
                 rigidbody2D.gravityScale = gravity;
             }
             //Debug.Log("Out");
-        }
+        }*/
     }
-*/
     void CheckInput()
     {
         move = Vector2.zero;
@@ -233,17 +246,19 @@ public class PlayerController : MonoBehaviour
             if (mp >= consumptionMp)
             {
                 mp -= consumptionMp;
-                mpSetting.Setting(mp / information.Mp);
+                UpdateMP();
                 _timeAttack = timeAttack;
                 animator.SetTrigger("Attack");
             }
             else
             {
+                UIController.instance.ShowMess(transform.position + Vector3.up * transform.GetComponent<Renderer>().bounds.size.y / 2,(int) MESS.hetMP);
                 // thông báo hết mp
             }
         }
         else
         {
+            UIController.instance.ShowMess(transform.position + Vector3.up * transform.GetComponent<Renderer>().bounds.size.y / 2, (int)MESS.skill);
             // thông báo chưa hồi chiêu
         }
     }
@@ -261,7 +276,7 @@ public class PlayerController : MonoBehaviour
             if(!checkWater)
                 rigidbody2D.AddForce(jumpFoce * Vector2.up/_numberJump);
             else
-                rigidbody2D.AddForce(jumpFoce/1.5f * Vector2.up / _numberJump);
+                rigidbody2D.AddForce(jumpFoce/1.1f * Vector2.up / _numberJump);
             //Debug.Log(rigidbody2D.velocity.y + " " + (jumpFoce));
             if (rigidbody2D.velocity.y > jumpFoce/55)
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
@@ -280,10 +295,11 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        /*if (collision.transform.CompareTag("Ground"))
-        {*/
+        if (capsuleCollider2D.IsTouchingLayers())
+        {
             _numberJump = 0;
-       // }
+        }
+       
     }
     /*private void OnTriggerStay2D(Collider2D collision)
     {
@@ -302,6 +318,8 @@ public class PlayerController : MonoBehaviour
             rigidbody2D.gravityScale = archimedesThrust;
             _numberJump = 0;
             checkWater = true;
+            UIController.instance.ShowMess(transform.position + Vector3.up * transform.GetComponent<Renderer>().bounds.size.y / 2, (int)MESS.slow);
+
             //Debug.Log("INN2");
         }
         if (collision.CompareTag("Lader"))
@@ -379,6 +397,7 @@ public class PlayerController : MonoBehaviour
                 _delayZoom -= Time.deltaTime;
             else
                 cameraFollow.ZoomOut();
+            hoiMP = false;
         }
         else
         {
@@ -392,17 +411,29 @@ public class PlayerController : MonoBehaviour
             else
             {
                 cameraFollow.ZoomIn();
-                if(mp < information.Mp)
+                if(mp < information.Mp && !hoiMP)
                 {
-                    mp += recuperateMp;
-                    if(mp > information.Mp)
-                    {
-                        mp = information.Mp;
-                    }
-                    mpSetting.Setting(mp / information.Mp);
+                    hoiMP = true;
+                    UIController.instance.ShowMess(transform.position + Vector3.up * transform.GetComponent<Renderer>().bounds.size.y / 2, (int)MESS.hoiMP);
                 }
             }
         }
+    }
+    void HoiPhuc()
+    {
+        if(hoiMP)
+        {
+            HoiMP();
+        }
+    }
+    void HoiMP()
+    {
+        mp += recuperateMp;
+        if (mp > information.Mp)
+        {
+            mp = information.Mp;
+        }
+        mpSetting.Setting(mp / information.Mp);
     }
     /*private void OnDrawGizmos()
     {
@@ -413,9 +444,35 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawLine(pointCheckLayer.position, pointCheckLayer.position - new Vector3(0, distanceWater, 0));
         //Gizmos.DrawWireSphere(pointCheckLayer.position, distanceWater);
     }*/
+    public void AddDame(float dame)
+    {
+        animator.SetTrigger("Hit");
+        hp -= dame;
+        UpdateHp();
+    }
+    void UpdateHp()
+    {
+        hpSetting.Setting(hp / information.Hp);
+        if(hp <= 0)
+        {
+            DestroyCharacter.instance.DestroyGameObject(transform.position, sprites, false);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
+            UIController.instance.EndGame();
+        }
+    }
+    void UpdateMP()
+    {
+        mpSetting.Setting(mp / information.Mp);
+    }
     public Rigidbody2D Rigidbody2D
     {
         get { return rigidbody2D; }
         set { rigidbody2D = value; }
+    }
+    public void UpdateInfomationNextMap()
+    {
+        PlayerPrefs.SetFloat(DataPlay.NameKey(NAME_KEY_PREFABS.hpPlayer), hp);
+        PlayerPrefs.SetFloat(DataPlay.NameKey(NAME_KEY_PREFABS.mpPlayer), mp);
     }
 }

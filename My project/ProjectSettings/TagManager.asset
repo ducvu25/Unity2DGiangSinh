@@ -9,6 +9,7 @@ TagManager:
   - Water
   - Enemy
   - BulletPlayer
+  - PointCoin
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - BulletPlayer
   - BulletEnemy
   - DestroyCharacter
-  - 
+  - Hazard
   - 
   - 
   - 

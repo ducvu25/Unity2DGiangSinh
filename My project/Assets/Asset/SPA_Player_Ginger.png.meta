@@ -744,6 +744,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: SPA_Player_Ginger_29
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 20
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45646299dfc5f1d47ad136e692055862
+      internalID: -950079117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPA_Player_Ginger_30
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 13
+        width: 27
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddba635421cff6b4884a020b4e3976e3
+      internalID: 1901860639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPA_Player_Ginger_31
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 5
+        width: 24
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0b94e0bd73740f419da3be4052088d7
+      internalID: 1911107329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -777,7 +840,10 @@ TextureImporter:
       SPA_Player_Ginger_26: 1280780980
       SPA_Player_Ginger_27: 581748168
       SPA_Player_Ginger_28: 351625352
+      SPA_Player_Ginger_29: -950079117
       SPA_Player_Ginger_3: 1511745247
+      SPA_Player_Ginger_30: 1901860639
+      SPA_Player_Ginger_31: 1911107329
       SPA_Player_Ginger_4: -109660620
       SPA_Player_Ginger_5: -784683729
       SPA_Player_Ginger_6: -2009510893
