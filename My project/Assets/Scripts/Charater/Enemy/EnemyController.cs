@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour
     Animator ani;
     [SerializeField] List<Sprite> sprites;
     CircleCollider2D circleCollider;
+    [SerializeField] CircleCollider2D checkGround2;
+    [SerializeField] LayerMask lmGround;
 
     //Start is called before the first frame update
     void Start()
@@ -44,6 +46,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameController.instance.PauseGame) return;
         ani.SetBool("run", run);
         Run();
         if (_delayAttack > 0)
@@ -60,6 +63,10 @@ public class EnemyController : MonoBehaviour
             Flip();
             run = !run;
             timeIdle = Random.Range(2, 10);
+        }
+        if (checkGround2.IsTouchingLayers(lmGround))
+        {
+            Flip();
         }
     }
     void Run()
@@ -108,6 +115,7 @@ public class EnemyController : MonoBehaviour
             collision.transform.GetComponent<PlayerController>().AddDame(informationSO.Damage);
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

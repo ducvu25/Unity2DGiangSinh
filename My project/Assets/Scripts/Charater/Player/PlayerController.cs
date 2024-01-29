@@ -120,6 +120,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameController.instance.PauseGame) return;
         if (hp > 0)
         {
             CheckLayer();
@@ -284,6 +285,7 @@ public class PlayerController : MonoBehaviour
     }
     void Flip()
     {
+        //HuongDanController.instance.Flip(); 
         facingRight = !facingRight;
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }

@@ -52,12 +52,14 @@ public class UIController : MonoBehaviour
     public void ShowSettingOn()
     {
         //Debug.Log("On");
+        GameController.instance.PauseGame = true;
         goSetting.SetActive(true);
         goSetting.transform.GetComponent<Animator>().SetTrigger("On");
     }
     public void ShowSettingOff()
     {
         //Debug.Log("Off");
+        GameController.instance.PauseGame = false;
         goSetting.transform.GetComponent<Animator>().SetTrigger("Off");
         StartCoroutine(Off(1.5f));
     }
