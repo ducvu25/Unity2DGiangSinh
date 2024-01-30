@@ -285,7 +285,7 @@ public class PlayerController : MonoBehaviour
     }
     void Flip()
     {
-        //HuongDanController.instance.Flip(); 
+        HuongDanController.instance.Flip(); 
         facingRight = !facingRight;
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }

@@ -9,11 +9,16 @@ public class Coin : MonoBehaviour
     Transform pointTxtCoin;
     [SerializeField] float smoothSpeed;
     [SerializeField] float delta;
+    [SerializeField] int type = 0;
 
     int value;
     bool check;
     private void Start()
     {
+        if(type == 1)
+        {
+            transform.GetComponent<Rigidbody2D>().gravityScale = 0;
+        }
         value = (int) Random.Range(range.x, range.y);
         check = true;
         pointTxtCoin = GameObject.FindGameObjectWithTag("PointCoin").transform;

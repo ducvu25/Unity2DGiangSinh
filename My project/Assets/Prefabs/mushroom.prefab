@@ -186,9 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberJump: 2
-  delayJump: 5
+  delayJump: 2
   pointCheck: {fileID: 8753984074472809058}
-  force: 650
+  force: 700
 --- !u!251 &4299327772486909465
 PlatformEffector2D:
   m_ObjectHideFlags: 0

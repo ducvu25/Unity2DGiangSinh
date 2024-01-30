@@ -33,15 +33,16 @@ public class HuongDanController : MonoBehaviour
 
     private void Awake()
     {
-        /*int n = FindObjectsOfType<HuongDanController>().Length;
+        int n = FindObjectsOfType<HuongDanController>().Length;
+        //Debug.Log(n);
         if(n > 1)
         {
             Destroy(gameObject);
         }
         else
-        {*/
+        {
             instance = this;
-       // }
+        }
     }
 
     // Start is called before the first frame update
@@ -54,6 +55,7 @@ public class HuongDanController : MonoBehaviour
     }
     public void ShowMes(string s, StateHuongDan type)
     {
+        //Debug.Log(s);
         mess.Add(new MES(s, type));
         if(!goTxt.activeSelf) { ShowMes(); }
     }
@@ -61,20 +63,16 @@ public class HuongDanController : MonoBehaviour
     {
         if (mess.Count > 0)
         {
+            //Debug.Log("2. " + mess[0].mes);
             goTxt.SetActive(true);
             animator.SetInteger("state", (int)mess[0].value);
-            int[] typeLenght = { 10, 20, 40, 60 };
-            for (int i = 0; i < typeLenght.Length; i++)
-                if (mess[0].mes.Length < typeLenght[i])
-                {
-                    StartCoroutine(Show(mess[0].mes, 0, i + 1));
-                    break;
-                }
+            StartCoroutine(Show(mess[0].mes, 0, 1));
             mess.Remove(mess[0]);
         }
     }
     IEnumerator Show(string s, int i, float delay)
     {
+        //Debug.Log(s);
         string mes = s.Substring(0, i);
         txtMes.text = mes;
 
@@ -96,8 +94,8 @@ public class HuongDanController : MonoBehaviour
         goTxt.SetActive(false);
         ShowMes();
     }
-/*    public void Flip()
+    public void Flip()
     {
         goTxt.transform.GetChild(0).localScale = new Vector3(-goTxt.transform.GetChild(0).localScale.x, goTxt.transform.GetChild(0).localScale.y, goTxt.transform.GetChild(0).localScale.z);
-    }*/
+    }
 }

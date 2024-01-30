@@ -35,7 +35,7 @@ public class MushRoom : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player") && _numberJump < numberJump && collision.transform.position.y >= pointCheck.position.y)
         {
-            Debug.Log(_numberJump);
+            //Debug.Log(_numberJump);
             _numberJump++;
             if(_numberJump == numberJump)
                 _delayJump = delayJump;
