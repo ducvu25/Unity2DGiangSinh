@@ -10,6 +10,17 @@ public enum StateHuongDan
     s_funny,
     s_hungry
 }
+[System.Serializable]
+public class MES
+{
+    public string mes;
+    public StateHuongDan value;
+    public MES(string mes, StateHuongDan value)
+    {
+        this.mes = mes;
+        this.value = value;
+    }
+}
 public class HuongDanController : MonoBehaviour
 {
     public static HuongDanController instance;
@@ -19,16 +30,7 @@ public class HuongDanController : MonoBehaviour
     [SerializeField] TextMeshProUGUI txtMes;
 
     Animator animator;
-    class MES
-    {
-        public string mes;
-        public StateHuongDan value;
-        public MES(string mes, StateHuongDan value)
-        {
-            this.mes = mes;
-            this.value = value; 
-        }
-    }
+
     List<MES> mess;
 
     private void Awake()

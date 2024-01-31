@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] InformationSO informationSO;
+    [SerializeField] List<MES> mes;
     float timeIdle;
     float hp;
     bool facingRight;
@@ -47,6 +48,10 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         if (GameController.instance.PauseGame) return;
+        if (checkGround2.IsTouchingLayers(lmGround))
+        {
+            Flip();
+        }
         ani.SetBool("run", run);
         Run();
         if (_delayAttack > 0)
@@ -63,10 +68,6 @@ public class EnemyController : MonoBehaviour
             Flip();
             run = !run;
             timeIdle = Random.Range(2, 10);
-        }
-        if (checkGround2.IsTouchingLayers(lmGround))
-        {
-            Flip();
         }
     }
     void Run()
@@ -91,6 +92,13 @@ public class EnemyController : MonoBehaviour
             if (hp <= 0)
             {
                 DestroyCharacter.instance.DestroyGameObject(transform.position, sprites);
+                if(mes.Count > 0)
+                {
+                    for(int i = 0; i<mes.Count; i++)
+                    {
+                        HuongDanController.instance.ShowMes(mes[i].mes, mes[i].value);
+                    }
+                }
                 Destroy(gameObject);
             }
         }

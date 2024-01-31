@@ -254,6 +254,7 @@ MonoBehaviour:
   jumpFoce: 500
   numberJump: 1
   delayJump: 0.2
+  forceAir: 1.5
   hpSetting: {fileID: 0}
   mpSetting: {fileID: 0}
   recuperateMp: 0.1

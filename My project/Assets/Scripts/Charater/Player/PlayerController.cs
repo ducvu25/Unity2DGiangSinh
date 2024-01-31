@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     int _numberJump;
     [SerializeField] float delayJump;
     float _delayJump;
+    [SerializeField] float forceAir;
+    bool isTouchingGround;
     float hp, mp;
     [SerializeField] HpUISetting hpSetting;
     [SerializeField] HpUISetting mpSetting;
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         facingRight = true;
+        isTouchingGround = false;
         _numberJump = 0;
         _delayGhost = 0;
         _delayRoll = 0;
@@ -267,6 +270,8 @@ public class PlayerController : MonoBehaviour
     {
         if (checkWater)
             move.x /= 2;
+        if (!isTouchingGround)
+            move.x *= forceAir;
         rigidbody2D.velocity = new Vector2(move.x*information.Speed, rigidbody2D.velocity.y);
     }
     void Jump()
@@ -300,6 +305,7 @@ public class PlayerController : MonoBehaviour
         if (capsuleCollider2D.IsTouchingLayers())
         {
             _numberJump = 0;
+            isTouchingGround = true;
         }
        
     }
@@ -374,9 +380,15 @@ public class PlayerController : MonoBehaviour
             if (move.x != 0)
                 state = State.run;
             if (rigidbody2D.velocity.y > 0.1f)
+            {
                 state = State.jump1;
+                isTouchingGround = false;
+            }
             else if (rigidbody2D.velocity.y < -0.1f)
+            {
                 state = State.jump2;
+                isTouchingGround = false;
+            }
             if (_delayGhost > 0)
                 _delayGhost -= Time.deltaTime;
             if (state >= State.jump1 && _delayGhost <= 0)

@@ -29235,7 +29235,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4.4632244, y: -4.6343985}
+  m_Offset: {x: -4.4933863, y: -4.3931046}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -29246,7 +29246,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.52280045, y: 5.4692135}
+  m_Size: {x: 0.5831237, y: 5.9518013}
   m_EdgeRadius: 0
 --- !u!1 &1171409693
 GameObject:
@@ -44180,7 +44180,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4.4632244, y: -7.772789}
+  m_Offset: {x: -4.493422, y: -7.6821966}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -44191,7 +44191,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.52280045, y: 12.510597}
+  m_Size: {x: 0.5831957, y: 12.691782}
   m_EdgeRadius: 0
 --- !u!1001 &1882990642
 PrefabInstance:
@@ -44342,7 +44342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1494561503919527240, guid: e470458bb073a5947811e57f5a783b16, type: 3}
       propertyPath: m_LocalScale.x
-      value: -2.4833
+      value: 2.4833
       objectReference: {fileID: 0}
     - target: {fileID: 1494561503919527240, guid: e470458bb073a5947811e57f5a783b16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -44387,6 +44387,10 @@ PrefabInstance:
     - target: {fileID: 8146552172900005079, guid: e470458bb073a5947811e57f5a783b16, type: 3}
       propertyPath: typeHub
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146552172900005079, guid: e470458bb073a5947811e57f5a783b16, type: 3}
+      propertyPath: facingRight
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44445,6 +44449,10 @@ PrefabInstance:
     - target: {fileID: 6697606793632773745, guid: 4159bd55d352c9a428e569db1acf7715, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296648683060278102, guid: 4159bd55d352c9a428e569db1acf7715, type: 3}
+      propertyPath: forceAir
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8296648683060278102, guid: 4159bd55d352c9a428e569db1acf7715, type: 3}
       propertyPath: hpSetting

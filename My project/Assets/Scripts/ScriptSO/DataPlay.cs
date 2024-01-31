@@ -16,6 +16,7 @@ public enum NAME_KEY_PREFABS
 public static class DataPlay
 {
     static bool startGame = true;
+    static int typeLanguage = 0;
     static float coin;
     static string[] NameMap = { "Loading", "Menu", "Lv1", "Lv2", "Lv3" };
     static string[] KeyPrefabs = { "HP_PLAYER", "MP_PLAYER", "NUMBER_COIN" };
@@ -24,6 +25,11 @@ public static class DataPlay
     {
         get { return startGame; }
         set { startGame = value; }
+    }
+    public static int TypeLanguage
+    {
+        get { return typeLanguage; }
+        set { typeLanguage = value; }
     }
     public static float Coin
     {
