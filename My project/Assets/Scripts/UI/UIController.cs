@@ -29,7 +29,11 @@ public class UIController : MonoBehaviour
     [SerializeField] TextMeshProUGUI txtCoinEnd;
     [SerializeField] float delayShowCoin = 0.2f;
 
-    string[] messValue = { "Năng lượng không đủ", "Làm chậm", "Đang hồi", "Hồi năng lượng" };
+
+    SettingLanguage settingLanguage;
+
+    string[,] messValue = { { "Năng lượng không đủ", "Làm chậm", "Đang hồi", "Hồi năng lượng" }, { "Insufficient energy", "Slow", "Regenerating", "Mana regeneration" } };
+
 
     void Awake()
     {
@@ -38,6 +42,8 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        settingLanguage = GetComponent<SettingLanguage>();
+        settingLanguage.UpdateLanguage();
         goSetting.SetActive(false);
         goEnd.SetActive(false);
     }
@@ -97,12 +103,13 @@ public class UIController : MonoBehaviour
         if (_delayMes > 0) return;
         _delayMes = delayMes;
         GameObject go = Instantiate(goShowMes, pos, Quaternion.identity);
-        go.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = messValue[value];
+        go.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = messValue[DataPlay.TypeLanguage, value];
         Destroy(go, timeAliveMess);
     }
 
     public void UpdateCoin(int value)
     {
-        txtCoin.text = value.ToString();
+        if(txtCoin != null)
+            txtCoin.text = value.ToString();
     }
 }
