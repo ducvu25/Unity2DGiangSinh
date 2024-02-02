@@ -12,9 +12,9 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        int n = FindObjectsOfType<GameController>().Length;
+        /*int n = FindObjectsOfType<GameController>().Length;
         if(n > 1)
-            Destroy(gameObject);
+            Destroy(gameObject);*/
         instance = this;
     }
     // Start is called before the first frame update
@@ -52,6 +52,7 @@ public class GameController : MonoBehaviour
     }
     public void Reset()
     {
+        DataPlay.StartGame = true;
         SceneManager.LoadScene(DataPlay.Name(NAME_MAP.lv1));
     }
     public void Menu()

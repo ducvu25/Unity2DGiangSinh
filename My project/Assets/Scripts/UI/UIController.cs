@@ -86,11 +86,12 @@ public class UIController : MonoBehaviour
     }
     IEnumerator UpdateCoinEnd(int i, int n, float t)
     {
+        if (i > n) i = n;
         yield return new WaitForSeconds(t);
         txtCoinEnd.text = i.ToString();
         if (i < n)
         {
-            StartCoroutine(UpdateCoinEnd(i+1, n, t));
+            StartCoroutine(UpdateCoinEnd(i+(int)Random.RandomRange(1, n/20), n, t));
         }
     }
     public void ShowHpAddDame(Vector3 pos, float dame, bool crits)

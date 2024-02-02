@@ -35,16 +35,16 @@ public class HuongDanController : MonoBehaviour
 
     private void Awake()
     {
-        int n = FindObjectsOfType<HuongDanController>().Length;
+        /*int n = FindObjectsOfType<HuongDanController>().Length;
         //Debug.Log(n);
         if(n > 1)
         {
             Destroy(gameObject);
         }
         else
-        {
+        {*/
             instance = this;
-        }
+        //}
     }
 
     // Start is called before the first frame update
